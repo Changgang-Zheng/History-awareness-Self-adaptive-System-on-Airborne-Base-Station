@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b05ec21a-1feb-4fc9-9fed-8edb61af719e" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/SARSA_changgang$main.coverage" NAME="main Coverage Results" MODIFIED="1575470225512" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_SARSA_changgang$main.coverage" NAME="main Coverage Results" MODIFIED="1572005200143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="main-SARSA-changgang" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/main.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/models.py" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProjectId" id="1Uh1NWN5P6Qy8Njll0TIBSpWJcf" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="main-SARSA-changgang" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b05ec21a-1feb-4fc9-9fed-8edb61af719e" name="Default Changelist" comment="" />
+      <created>1559144366155</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1559144366155</updated>
+      <workItem from="1559144367428" duration="3603000" />
+      <workItem from="1559274657294" duration="1121000" />
+      <workItem from="1559486611781" duration="442000" />
+      <workItem from="1562236320953" duration="625000" />
+      <workItem from="1563069456003" duration="4000" />
+      <workItem from="1563069461259" duration="1528000" />
+      <workItem from="1563088503423" duration="1362000" />
+      <workItem from="1563345712148" duration="6794000" />
+      <workItem from="1563359836812" duration="6412000" />
+      <workItem from="1564381992063" duration="6157000" />
+      <workItem from="1564543778869" duration="11707000" />
+      <workItem from="1564590151684" duration="8352000" />
+      <workItem from="1564743934700" duration="4331000" />
+      <workItem from="1565151817740" duration="1307000" />
+      <workItem from="1565153679744" duration="7945000" />
+      <workItem from="1565859360869" duration="4604000" />
+      <workItem from="1566784242656" duration="4542000" />
+      <workItem from="1566830521605" duration="4107000" />
+      <workItem from="1566896009838" duration="6973000" />
+      <workItem from="1566923424720" duration="1187000" />
+      <workItem from="1566966085627" duration="242000" />
+      <workItem from="1566987780902" duration="1755000" />
+      <workItem from="1567059183959" duration="7000" />
+      <workItem from="1570527124673" duration="1000" />
+      <workItem from="1570624031792" duration="14432000" />
+      <workItem from="1570884555829" duration="11367000" />
+      <workItem from="1571786767885" duration="25000" />
+      <workItem from="1571915921729" duration="644000" />
+      <workItem from="1572004455119" duration="1666000" />
+      <workItem from="1572151652050" duration="19000" />
+      <workItem from="1572192224419" duration="403000" />
+      <workItem from="1572280604460" duration="168000" />
+      <workItem from="1572352369333" duration="297000" />
+      <workItem from="1572367924522" duration="414000" />
+      <workItem from="1572429207623" duration="4444000" />
+      <workItem from="1574191847633" duration="4000" />
+      <workItem from="1575448526302" duration="1200000" />
+      <workItem from="1575451816152" duration="1200000" />
+      <workItem from="1575470221575" duration="10125000" />
+      <workItem from="1581676600200" duration="2000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="827" y="134" key="#main" timestamp="1582783085039">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="827" y="134" key="#main/0.0.1440.900@0.0.1440.900" timestamp="1582783085039" />
+    <state x="986" y="150" key="#main/0.0.1680.1010@0.0.1680.1010" timestamp="1581676218389" />
+    <state x="-717" y="-274" key="#xdebugger.evaluate" timestamp="1582873782616">
+      <screen x="-1920" y="-493" width="1920" height="1012" />
+    </state>
+    <state x="-717" y="-274" key="#xdebugger.evaluate/0.23.1440.877/-1920.-493.1920.1012@-1920.-493.1920.1012" timestamp="1582873782616" />
+    <state width="1341" height="246" key="GridCell.Tab.0.bottom" timestamp="1582886931682">
+      <screen x="0" y="23" width="1440" height="835" />
+    </state>
+    <state width="1899" height="374" key="GridCell.Tab.0.bottom/0.0.1440.900/-1920.-516.1920.1080@-1920.-516.1920.1080" timestamp="1582871991649" />
+    <state width="1419" height="303" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1582783132233" />
+    <state width="1341" height="246" key="GridCell.Tab.0.bottom/0.23.1440.835@0.23.1440.835" timestamp="1582886931682" />
+    <state width="1341" height="246" key="GridCell.Tab.0.bottom/0.23.1440.877/-1920.-493.1920.1012@-1920.-493.1920.1012" timestamp="1582874113484" />
+    <state width="1341" height="246" key="GridCell.Tab.0.center" timestamp="1582886931682">
+      <screen x="0" y="23" width="1440" height="835" />
+    </state>
+    <state width="1899" height="374" key="GridCell.Tab.0.center/0.0.1440.900/-1920.-516.1920.1080@-1920.-516.1920.1080" timestamp="1582871991646" />
+    <state width="1419" height="303" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1582783132231" />
+    <state width="1341" height="246" key="GridCell.Tab.0.center/0.23.1440.835@0.23.1440.835" timestamp="1582886931682" />
+    <state width="1341" height="246" key="GridCell.Tab.0.center/0.23.1440.877/-1920.-493.1920.1012@-1920.-493.1920.1012" timestamp="1582874113482" />
+    <state width="1341" height="246" key="GridCell.Tab.0.left" timestamp="1582886931681">
+      <screen x="0" y="23" width="1440" height="835" />
+    </state>
+    <state width="1899" height="374" key="GridCell.Tab.0.left/0.0.1440.900/-1920.-516.1920.1080@-1920.-516.1920.1080" timestamp="1582871991643" />
+    <state width="1419" height="303" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1582783132230" />
+    <state width="1341" height="246" key="GridCell.Tab.0.left/0.23.1440.835@0.23.1440.835" timestamp="1582886931681" />
+    <state width="1341" height="246" key="GridCell.Tab.0.left/0.23.1440.877/-1920.-493.1920.1012@-1920.-493.1920.1012" timestamp="1582874113481" />
+    <state width="1341" height="246" key="GridCell.Tab.0.right" timestamp="1582886931682">
+      <screen x="0" y="23" width="1440" height="835" />
+    </state>
+    <state width="1899" height="374" key="GridCell.Tab.0.right/0.0.1440.900/-1920.-516.1920.1080@-1920.-516.1920.1080" timestamp="1582871991648" />
+    <state width="1419" height="303" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1582783132232" />
+    <state width="1341" height="246" key="GridCell.Tab.0.right/0.23.1440.835@0.23.1440.835" timestamp="1582886931682" />
+    <state width="1341" height="246" key="GridCell.Tab.0.right/0.23.1440.877/-1920.-493.1920.1012@-1920.-493.1920.1012" timestamp="1582874113483" />
+    <state width="1341" height="246" key="GridCell.Tab.1.bottom" timestamp="1582886931683">
+      <screen x="0" y="23" width="1440" height="835" />
+    </state>
+    <state width="1419" height="303" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1582783130605" />
+    <state width="1341" height="246" key="GridCell.Tab.1.bottom/0.23.1440.835@0.23.1440.835" timestamp="1582886931683" />
+    <state width="1341" height="246" key="GridCell.Tab.1.bottom/0.23.1440.877/-1920.-493.1920.1012@-1920.-493.1920.1012" timestamp="1582874113488" />
+    <state width="1341" height="246" key="GridCell.Tab.1.center" timestamp="1582886931683">
+      <screen x="0" y="23" width="1440" height="835" />
+    </state>
+    <state width="1419" height="303" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1582783130603" />
+    <state width="1341" height="246" key="GridCell.Tab.1.center/0.23.1440.835@0.23.1440.835" timestamp="1582886931683" />
+    <state width="1341" height="246" key="GridCell.Tab.1.center/0.23.1440.877/-1920.-493.1920.1012@-1920.-493.1920.1012" timestamp="1582874113486" />
+    <state width="1341" height="246" key="GridCell.Tab.1.left" timestamp="1582886931682">
+      <screen x="0" y="23" width="1440" height="835" />
+    </state>
+    <state width="1419" height="303" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1582783130603" />
+    <state width="1341" height="246" key="GridCell.Tab.1.left/0.23.1440.835@0.23.1440.835" timestamp="1582886931682" />
+    <state width="1341" height="246" key="GridCell.Tab.1.left/0.23.1440.877/-1920.-493.1920.1012@-1920.-493.1920.1012" timestamp="1582874113485" />
+    <state width="1341" height="246" key="GridCell.Tab.1.right" timestamp="1582886931683">
+      <screen x="0" y="23" width="1440" height="835" />
+    </state>
+    <state width="1419" height="303" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1582783130604" />
+    <state width="1341" height="246" key="GridCell.Tab.1.right/0.23.1440.835@0.23.1440.835" timestamp="1582886931683" />
+    <state width="1341" height="246" key="GridCell.Tab.1.right/0.23.1440.877/-1920.-493.1920.1012@-1920.-493.1920.1012" timestamp="1582874113487" />
+    <state x="443" y="137" key="SettingsEditor" timestamp="1582783097042">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="443" y="137" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1582783097042" />
+    <state x="686" y="154" key="SettingsEditor/0.0.1680.1010@0.0.1680.1010" timestamp="1581676228876" />
+    <state x="413" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1583321841478">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="413" y="257" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1583321841478" />
+    <state x="413" y="273" key="com.intellij.ide.util.TipDialog/0.23.1440.877/-1920.-493.1920.1012@0.23.1440.877" timestamp="1582954783236" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

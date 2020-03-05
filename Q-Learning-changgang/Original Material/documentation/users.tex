@@ -1,0 +1,67 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\pgfplotsset{compat=1.3}
+\def \mw {1.5pt}
+\begin{tikzpicture}
+
+\begin{axis}[%
+at={(0.13in,0.098in)},
+scale only axis,
+xmin=0,
+xmax=100,
+xlabel style={font=\color{white!15!black}},
+xlabel={$x$ (m)},
+ymin=0,
+ymax=100,
+ylabel style={font=\color{white!15!black}},
+ylabel={$y$ (m)},
+axis background/.style={fill=white},
+xmajorgrids,
+ymajorgrids,
+minor grid style={dashed},
+set layers,
+xticklabel style = {font=\large, yshift=-.7em},
+yticklabel style = {font=\large, xshift=-.7em},
+xlabel style={font=\Large, yshift=-1em},
+ylabel style={font=\Large, yshift=1.5em},
+title style={font=\LARGE},
+legend style={legend cell align=left, align=left, draw=white!15!black, font=\large},
+]
+\addplot[only marks, mark=*, mark options={}, mark size=2.1651pt, draw=blue, fill=blue] table[row sep=crcr]{%
+x	y\\
+33.1039363358315	47.2670913994937\\
+40.7188405447753	29.9435329451968\\
+62.4424298818045	53.6514820435643\\
+46.4736717181615	74.7995213752686\\
+31.7755815671182	41.3952752335151\\
+27.1642791732632	22.4610412525807\\
+26.7703062136752	41.2448653155578\\
+35.4948422927757	57.6370351284124\\
+23.4023317642292	66.6269214324328\\
+37.4768531424445	58.5426309921738\\
+46.1748050049962	85.2705873537184\\
+28.5983093592481	68.9146276316762\\
+50.7767022293099	43.1297066818567\\
+49.3371914257899	27.3643931702637\\
+0.518481083217345	63.0339329356793\\
+47.2591243548809	54.5002811092411\\
+26.7652048499168	47.5772814799484\\
+34.4591526968066	36.6033425669962\\
+29.5731235540687	43.8203152787121\\
+53.0980857004862	47.483272921902\\
+};
+\addlegendentry{Users};
+
+\addplot[only marks, mark=square*, mark size=2.1651pt, draw=red, fill=red] table[row sep=crcr]{%
+x y \\
+40 50 \\
+};
+\addlegendentry{Cluster Center};
+
+
+\end{axis}
+\end{tikzpicture}%

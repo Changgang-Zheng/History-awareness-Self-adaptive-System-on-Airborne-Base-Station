@@ -227,7 +227,7 @@ class Q_Learning:
                     state[1] -= self.args.resolution
                 break
             if case('north'):
-                if state[0] + self.args.resolution < self.args.width:
+                if state[1] + self.args.resolution < self.args.width:
                     state[1] += self.args.resolution
                 break
             if case('stay'):

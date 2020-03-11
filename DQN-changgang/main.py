@@ -99,7 +99,7 @@ def environment_setup(i):
     # dronePos[:,0:2] = np.random.randint(0, int(args.length/args.resolution),[args.numDrones,2])*10+5
     # dronePos[:,2] = 30
     #dronePos = np.array([[0, 0, 30], [99, 99, 30], [0, 99, 30], [99, 0, 30], [0, 49, 30], [49, 0, 30], [99, 49, 30], [49, 99, 30]])
-    dronePos = np.array([[0, 0, 30], [99, 99, 30]])
+    dronePos = np.array([[5, 5, 30], [95, 95, 30]])
 
     # userPos = np.zeros((args.numUsers,3))
     # userPos[:,0:2] =np.floor((np.random.randn(args.numUsers,2)*args.SIGMA*5 + u)%args.length)

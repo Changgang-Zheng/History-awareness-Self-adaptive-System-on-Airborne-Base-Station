@@ -215,7 +215,7 @@ def main(args):
 
     count = []
     for i in range(args.episode):
-        dronePos = np.array([[0, 0, 30], [99, 99, 30]])
+        dronePos = np.array([[5, 5, 30], [95, 95, 30]])
         total = 0
         counter = 0
         reword_table = np.zeros((args.numDrones, args.step))

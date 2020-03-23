@@ -171,14 +171,15 @@ def save_initial_settling(U_p, D_p, name = args.database_name, collection_name =
     initial_info ['episodes'] = 'total if possible'
     result = collection.insert(initial_info)
 
-def save_Q_table(table, SINR, initial_real_reword, action, dronePos, episode, step, drone, name , collection_name, host='localhost', port=27017):
+def save_Q_table(table, SINR, initial_real_reward, action, dronePos, episode, step, drone, name , collection_name, host='localhost', port=27017):
     myclient = pymongo.MongoClient(host='localhost', port=27017)
     mydb = myclient[name]
     dblist = myclient.list_database_names()
     data = {}
-    epoch_dict = data['episode: ' + episode] = {}
-    step_dict = epoch_dict['step: ' + step] = {}
-    drone_dict = step_dict ['drone number: ' + drone] = {}
+    data['episode'] = episode
+    data['step'] = step
+    data['drone number'] = drone
+    drone_dict = data ['qtable'] = {}
     for i in table[int(drone)].index:
         drone_dict['position: ' + i] = {}
         for j in table[int(drone)].columns:
@@ -186,7 +187,7 @@ def save_Q_table(table, SINR, initial_real_reword, action, dronePos, episode, st
     drone_dict['SINR'] = generate_dict_from_array( SINR, 'user')
     drone_dict['state'] = generate_dict_from_array(dronePos, 'drone')
     drone_dict['action'] = action
-    drone_dict['reword'] = initial_real_reword
+    drone_dict['reward'] = initial_real_reward
     collection = mydb[collection_name]
     result = collection.insert(data)
 
@@ -198,10 +199,10 @@ def theoretical_performance(userPos, num):
         drone_Pos = np.zeros((args.numDrones, 3))
         drone_Pos[:, 0:2] = np.random.randint(0, int(args.length / args.resolution), [args.numDrones, 2]) * 10 + 5
         drone_Pos[:, 2] = 30
-        _, _, initial_real_reword = models.alloc_users(userPos, drone_Pos, args.fc, args.dAngle, args.N0, args.BW, args.Pt,args.connectThresh)
-        average += initial_real_reword['total']
-        if max<= initial_real_reword['total']:
-            max = initial_real_reword['total']
+        _, _, initial_real_reward = models.alloc_users(userPos, drone_Pos, args.fc, args.dAngle, args.N0, args.BW, args.Pt,args.connectThresh)
+        average += initial_real_reward['total']
+        if max<= initial_real_reward['total']:
+            max = initial_real_reward['total']
     average /= num
     print('theoretical maximum performance', max, 'theoretical average performance', average)
     return max, average
@@ -218,31 +219,31 @@ def main(args):
         dronePos = np.array([[0, 0, 30], [99, 99, 30]])
         total = 0
         counter = 0
-        reword_table = np.zeros((args.numDrones, args.step))
+        reward_table = np.zeros((args.numDrones, args.step))
         for j in range(args.step):
             initial_state = dronePos
-            initial_table_reword = 0
-            second_real_reword = 0
-            second_table_reword = 0
-            rewords = 0
+            initial_table_reward = 0
+            second_real_reward = 0
+            second_table_reward = 0
+            rewards = 0
             for k in range(args.numDrones):
-                initial_table_reword, initial_action, Q_table[k] = sarsa.choose_action(dronePos[k][:2], Q_table[k])
+                initial_table_reward, initial_action, Q_table[k] = sarsa.choose_action(dronePos[k][:2], Q_table[k])
                 dronePos[k][:2] = sarsa.take_action(dronePos[k][:2], initial_action)
-                _, _, initial_real_reword = models.alloc_users(userPos,dronePos,args.fc,args.dAngle,args.N0,args.BW,args.Pt,args.connectThresh)
+                _, _, initial_real_reward = models.alloc_users(userPos,dronePos,args.fc,args.dAngle,args.N0,args.BW,args.Pt,args.connectThresh)
                 second_state = dronePos
-                second_table_reword , action, Q_table[k] = sarsa.choose_action(dronePos[k][:2], Q_table[k])
-                allocVec, SINR, second_real_reword = models.alloc_users(userPos,dronePos,args.fc,args.dAngle,args.N0,args.BW,args.Pt,args.connectThresh)
+                second_table_reward , action, Q_table[k] = sarsa.choose_action(dronePos[k][:2], Q_table[k])
+                allocVec, SINR, second_real_reward = models.alloc_users(userPos,dronePos,args.fc,args.dAngle,args.N0,args.BW,args.Pt,args.connectThresh)
                 dronePos = second_state%args.length
-                Q_table[k] = sarsa.update_Q_table(Q_table[k], initial_state[k][:2], initial_action, initial_table_reword, second_state[k][:2], second_table_reword, second_real_reword['total'])
-                rewords = initial_real_reword['total']
-                save_Q_table(Q_table, SINR, initial_real_reword, action, dronePos, str(i),str(j), str(k), args.database_name, args.collection_name)
+                Q_table[k] = sarsa.update_Q_table(Q_table[k], initial_state[k][:2], initial_action, initial_table_reward, second_state[k][:2], second_table_reward, second_real_reward['total'])
+                rewards = initial_real_reward['total']
+                save_Q_table(Q_table, SINR, initial_real_reward, action, dronePos, i,j,k, args.database_name, args.collection_name)
             counter += 1
-            total += initial_real_reword['total']
+            total += initial_real_reward['total']
             if j%200 ==0:
-                print('eisode', i,' with average reword:', total/counter)
-            reword_table[k,j] = rewords
+                print('eisode', i,' with average reward:', total/counter)
+            reward_table[k,j] = rewards
         count += [total/counter]
-        np.save('./Log/reword_episod_' + str(i)+ '.npy', count)
+        #np.save('./Log/reward_episod_' + str(i)+ '.npy', count)
         print (count)
         print(Q_table)
         print(dronePos)

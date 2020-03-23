@@ -81,7 +81,7 @@ def environment_setup():
     # dronePos = np.zeros((args.numDrones,3))
     # dronePos[:,0:2] = np.random.randint(0, int(args.length/args.resolution),[args.numDrones,2])*10+5
     # dronePos[:,2] = 30
-    dronePos = np.array([[0, 0, 30], [99, 99, 30]])
+    dronePos = np.array([[5, 5, 30], [95, 95, 30]])
 
     # userPos = np.zeros((args.numUsers,3))
     # userPos[:,0:2] =np.floor((np.random.randn(args.numUsers,2)*args.SIGMA*5 + u)%args.length)
@@ -224,11 +224,12 @@ def main(args):
     count = []
     for i in range(args.episode):
         if i < 20:
-            dronePos = np.array([[0, 0, 30], [99, 99, 30]])
+            dronePos = np.array([[5, 5, 30], [95, 95, 30]])
         total = 0
         counter = 0
         reword_table = np.zeros((args.numDrones, args.step))
         for j in range(args.step):
+            #print(dronePos)
             if i == 20:
                 userPos = environment.dynamic(userPos, i, j, args)
             initial_state = dronePos
@@ -243,7 +244,7 @@ def main(args):
                 second_state = dronePos
                 second_table_reword , action, Q_table[k] = Q.choose_max_action(dronePos[k][:2], Q_table[k])
                 allocVec, SINR, second_real_reword = models.alloc_users(userPos,dronePos,args.fc,args.dAngle,args.N0,args.BW,args.Pt,args.connectThresh)
-                dronePos = second_state%args.length
+                dronePos = second_state
                 Q_table[k] = Q.update_Q_table(Q_table[k], initial_state[k][:2], initial_action, initial_table_reword, second_state[k][:2], second_table_reword, second_real_reword['total'])
                 rewords = initial_real_reword['total']
                 #save_Q_table(Q_table, SINR, initial_real_reword, action, dronePos, str(i),str(j), str(k), args.database_name, args.collection_name)

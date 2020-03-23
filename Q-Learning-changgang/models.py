@@ -88,11 +88,12 @@ class Q_Learning:
 
     def build_Q_table(self):
         state_space = []
-        for i in range(1, int(self.args.length/self.args.resolution+2)):
-            for j in range(1, int(self.args.width/self.args.resolution+2)):
+        for i in range(1, int(self.args.length/self.args.resolution+1)):
+            for j in range(1, int(self.args.width/self.args.resolution+1)):
+                #print(str((int(i*self.args.resolution-self.args.resolution/2),int(j*self.args.resolution-self.args.resolution/2))))
                 state_space += [str((int(i*self.args.resolution-self.args.resolution/2),int(j*self.args.resolution-self.args.resolution/2)))]
         Q_table = pd.DataFrame(
-            np.zeros((int(self.args.length/self.args.resolution+1)*int(self.args.width/self.args.resolution+1),len(self.args.action_space))),
+            np.zeros((int(self.args.length/self.args.resolution)*int(self.args.width/self.args.resolution),len(self.args.action_space))),
             columns = self.args.action_space,
             index = state_space,
         )
@@ -100,6 +101,7 @@ class Q_Learning:
 
     def check_state_exist(self, state, Q_table):
         if str(tuple(map(int,state))) not in Q_table.index:
+            print('new state added')
             # append new state to q table
             Q_table = Q_table.append(
                 pd.Series(
@@ -149,7 +151,7 @@ class Q_Learning:
                     state[1] -= self.args.resolution
                 break
             if case('north'):
-                if state[0] + self.args.resolution < self.args.width:
+                if state[1] + self.args.resolution < self.args.width:
                     state[1] += self.args.resolution
                 break
             if case('stay'):

@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt, time
 from matplotlib.patches import Circle
 from datetime import datetime
 import pickle
-import copy
+import copy 
 
 parser = argparse.ArgumentParser(description='Reinforce Learning')
 parser.add_argument('--random_seed', default=19, type=int, help='The specific seed to generate the random numbers')

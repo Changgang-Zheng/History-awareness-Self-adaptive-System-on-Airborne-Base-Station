@@ -201,41 +201,21 @@ def save_initial_settling(U_p, D_p, name = args.database_name, collection_name =
     initial_info ['episodes'] = 'total if possible'
     result = collection.insert(initial_info)
 
-def save_Q_table(table, SINR, initial_real_reword, action, dronePos, episode, step, drone, name , collection_name, host='localhost', port=27017):
-    myclient = pymongo.MongoClient(host='localhost', port=27017)
-    mydb = myclient[name]
-    dblist = myclient.list_database_names()
-    data = {}
-     data['episode']=episode
-    data['step'] = step
-    data['drone number']=drone
-    drone_dict = data ['qtable'] = {}
-    for i in table[int(drone)].index:
-        drone_dict['position: ' + i] = {}
-        for j in table[int(drone)].columns:
-            drone_dict['position: ' + i][j] = table[int(drone)].loc[i, j]
-    drone_dict['SINR'] = generate_dict_from_array( SINR, 'user')
-    drone_dict['state'] = generate_dict_from_array(dronePos, 'drone')
-    drone_dict['action'] = action
-    drone_dict['reward'] = initial_real_reword
-    collection = mydb[collection_name]
-    result = collection.insert(data)
-    #print(result)
-
 def save_predicted_Q_table(observation_seq, SINR, predicted_table, action, reward_, dronePos, episode, step, drone, name , collection_name, host='localhost', port=27017):
     myclient = pymongo.MongoClient(host='localhost', port=27017)
     mydb = myclient[name]
     dblist = myclient.list_database_names()
     data = {}
-    epoch_dict = data['episode: ' + episode] = {}
-    step_dict = epoch_dict['step: ' + step] = {}
-    drone_dict = step_dict ['drone number: ' + drone] = {}
+    data['episode']=episode
+    data['step'] = step
+    data['drone number']=drone
+    drone_dict = data ['qtable'] = {}
     drone_dict['position: (' + str(dronePos[int(drone),0])+', '+str(dronePos[int(drone),1])+')'] = {}
     drone_dict['position: (' + str(dronePos[int(drone),0])+', '+str(dronePos[int(drone),1])+')'] = generate_pre_Q_dict_from_array(predicted_table.T)
     drone_dict['SINR'] = generate_dict_from_array( SINR, 'user')
     drone_dict['state'] = generate_dict_from_array(dronePos, 'drone')
     drone_dict['action'] = action
-    drone_dict['reword'] = reward_
+    drone_dict['reward'] = reward_
     collection = mydb[collection_name]
     result = collection.insert(data)
     #print(result)

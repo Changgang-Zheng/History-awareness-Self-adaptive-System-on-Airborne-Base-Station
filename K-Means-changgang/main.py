@@ -37,7 +37,7 @@ parser.add_argument('--BW', default=200e3, type=int, help='The bandwidth')
 parser.add_argument('--N0', default=10**(-20.4), type=float, help='The N0')
 parser.add_argument('--SIGMA', default=20, type=int, help='The SIGMA')
 
-parser.add_argument('--database_name', default='Q_Learning_Data_Base', type=str, help='The name of database')
+parser.add_argument('--database_name', default='K_Means_Data_Base', type=str, help='The name of database')
 parser.add_argument('--collection_name', default='Q_table_collection', type=str, help='The name of the collection')
 parser.add_argument('--host', default='localhost', type=str, help='The host type')
 parser.add_argument('--mongodb_port', default=27017, type=int, help='The port of database')
@@ -176,9 +176,10 @@ def save_Q_table(table, SINR, initial_real_reword, action, dronePos, episode, st
     mydb = myclient[name]
     dblist = myclient.list_database_names()
     data = {}
-    epoch_dict = data['episode: ' + episode] = {}
-    step_dict = epoch_dict['step: ' + step] = {}
-    drone_dict = step_dict ['drone number: ' + drone] = {}
+    data['episode']=episode
+    data['step'] = step
+    data['drone number']=drone
+    drone_dict = data ['qtable'] = {}
     for i in table[int(drone)].index:
         drone_dict['position: ' + i] = {}
         for j in table[int(drone)].columns:
@@ -186,7 +187,7 @@ def save_Q_table(table, SINR, initial_real_reword, action, dronePos, episode, st
     drone_dict['SINR'] = generate_dict_from_array( SINR, 'user')
     drone_dict['state'] = generate_dict_from_array(dronePos, 'drone')
     drone_dict['action'] = action
-    drone_dict['reword'] = initial_real_reword
+    drone_dict['reward'] = initial_real_reword
     collection = mydb[collection_name]
     result = collection.insert(data)
 
@@ -238,11 +239,11 @@ def main(args):
             counter += 1
             total += initial_real_reword['total']
             if j%10 ==0:
-                print('eisode', i,' with average reword:', total/counter)
+                print('episode', i,' with average reward:', total/counter)
             reword_table[k,j] = rewords
         count += [total/counter]
-        np.save('./Log/reword_episod_' + str(i)+ '.npy', count)
-        print ( 'count has been saved to ./Log/reword_episod_')
+        #np.save('./Log/reword_episod_' + str(i)+ '.npy', count)
+        #print ( 'count has been saved to ./Log/reword_episod_')
         print (count)
 
 

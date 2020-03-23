@@ -184,9 +184,10 @@ def save_Q_table(table, SINR, initial_real_reword, action, dronePos, episode, st
     mydb = myclient[name]
     dblist = myclient.list_database_names()
     data = {}
-    epoch_dict = data['episode: ' + episode] = {}
-    step_dict = epoch_dict['step: ' + step] = {}
-    drone_dict = step_dict ['drone number: ' + drone] = {}
+    data['episode']=episode
+    data['step'] = step
+    data['drone number']=drone
+    drone_dict = data ['qtable'] = {}
     for i in table[int(drone)].index:
         drone_dict['position: ' + i] = {}
         for j in table[int(drone)].columns:
@@ -194,7 +195,7 @@ def save_Q_table(table, SINR, initial_real_reword, action, dronePos, episode, st
     drone_dict['SINR'] = generate_dict_from_array( SINR, 'user')
     drone_dict['state'] = generate_dict_from_array(dronePos, 'drone')
     drone_dict['action'] = action
-    drone_dict['reword'] = initial_real_reword
+    drone_dict['reward'] = initial_real_reword
     collection = mydb[collection_name]
     result = collection.insert(data)
 
@@ -247,14 +248,14 @@ def main(args):
                 dronePos = second_state
                 Q_table[k] = Q.update_Q_table(Q_table[k], initial_state[k][:2], initial_action, initial_table_reword, second_state[k][:2], second_table_reword, second_real_reword['total'])
                 rewords = initial_real_reword['total']
-                #save_Q_table(Q_table, SINR, initial_real_reword, action, dronePos, str(i),str(j), str(k), args.database_name, args.collection_name)
+                save_Q_table(Q_table, SINR, initial_real_reword, action, dronePos, i,j, k, args.database_name, args.collection_name)
             counter += 1
             total += initial_real_reword['total']
             if j%200 ==0:
-                print('eisode', i,' with average reword:', total/counter)
+                print('eisode', i,' with average reward:', total/counter)
             reword_table[k,j] = rewords
         count += [total/counter]
-        np.save('./Log/reword_episod_' + str(i)+ '.npy', count)
+        #np.save('./Log/reword_episod_' + str(i)+ '.npy', count)
         print (count)
         print(Q_table)
         print(dronePos)

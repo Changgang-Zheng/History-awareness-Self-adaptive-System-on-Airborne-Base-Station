@@ -206,9 +206,10 @@ def save_Q_table(table, SINR, initial_real_reword, action, dronePos, episode, st
     mydb = myclient[name]
     dblist = myclient.list_database_names()
     data = {}
-    epoch_dict = data['episode: ' + episode] = {}
-    step_dict = epoch_dict['step: ' + step] = {}
-    drone_dict = step_dict ['drone number: ' + drone] = {}
+     data['episode']=episode
+    data['step'] = step
+    data['drone number']=drone
+    drone_dict = data ['qtable'] = {}
     for i in table[int(drone)].index:
         drone_dict['position: ' + i] = {}
         for j in table[int(drone)].columns:
@@ -216,7 +217,7 @@ def save_Q_table(table, SINR, initial_real_reword, action, dronePos, episode, st
     drone_dict['SINR'] = generate_dict_from_array( SINR, 'user')
     drone_dict['state'] = generate_dict_from_array(dronePos, 'drone')
     drone_dict['action'] = action
-    drone_dict['reword'] = initial_real_reword
+    drone_dict['reward'] = initial_real_reword
     collection = mydb[collection_name]
     result = collection.insert(data)
     #print(result)
@@ -324,7 +325,7 @@ def main(args):
                 observation_seq_ = np.concatenate((observation_seq[: ,: ,3:30], DQN.observe(drone_No, allocVec_['total'], dronePos, userPos)), axis=2)
                 observation_seq_adjust_ = (np.swapaxes(np.swapaxes(observation_seq_,0,2),1,2)).astype(np.float32)
                 Store_transition = save_data_for_training(Store_transition, count, observation_seq_adjust, action_adjust, reward_['total'], observation_seq_adjust_)
-                save_predicted_Q_table(observation_seq, SINR, action_reward.detach().numpy(), args.action_space[action_adjust], reward_, dronePos, str(i), str(j), str(drone_No), args.database_name, args.collection_name)
+                save_predicted_Q_table(observation_seq, SINR, action_reward.detach().numpy(), args.action_space[action_adjust], reward_, dronePos, i, j, drone_No, args.database_name, args.collection_name)
                 count += 1
                 if count % args.interval == 0 :
                     for rounds in range(args.round):

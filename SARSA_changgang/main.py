@@ -22,8 +22,8 @@ parser.add_argument('--numUsers', default=1050, type=int, help='The number of Us
 parser.add_argument('--length', default=100, type=int, help='The length of the area(meter)')
 parser.add_argument('--width', default=100, type=int, help='The width of the area(meter)')
 parser.add_argument('--resolution', default=10, type=int, help='The Resolution (meter)')
-parser.add_argument('--episode', default=10000, type=int, help='The number turns it plays')
-parser.add_argument('--step', default=20000, type=int, help='The number of steps for any turn of runs')
+parser.add_argument('--episode', default=10, type=int, help='The number turns it plays')
+parser.add_argument('--step', default=2000, type=int, help='The number of steps for any turn of runs')
 parser.add_argument('--action_space', default=['east','west','south','north','stay'], type=list, help='The avaliable states')
 parser.add_argument('--EPSILON', default=0.9, type=float, help='The greedy policy')
 parser.add_argument('--ALPHA', default=0.1, type=float, help='The learning rate')
@@ -136,7 +136,7 @@ def environment_setup():
         else:
             userPos = np.concatenate((userPos, cluster[dict]), axis=0)
     userPos[:, 2] = 1.5
-    #save_initial_settling(userPos,dronePos)
+    save_initial_settling(userPos,dronePos)
     Q_table = {}
     for i in range(args.numDrones):
         Q_table[i] = sarsa.build_Q_table()

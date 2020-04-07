@@ -144,7 +144,7 @@ def environment_setup():
         else:
             userPos = np.concatenate((userPos, cluster[dict]), axis=0)
     userPos[:, 2] = 1.5
-    #save_initial_settling(userPos,dronePos)
+    save_initial_settling(userPos,dronePos)
     Q_table = {}
     for i in range(args.numDrones):
         Q_table[i] = Q.build_Q_table()

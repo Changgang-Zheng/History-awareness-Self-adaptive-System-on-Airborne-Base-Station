@@ -1,0 +1,4 @@
+*.npy
+*.pyc
+*network_parameters
+__pycache__

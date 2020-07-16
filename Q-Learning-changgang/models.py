@@ -62,7 +62,7 @@ def alloc_users(userPos, dronePos, fc, dAngle, N0, BW, Pt, connectThresh):
     numDrones = np.size(dronePos, 0)
     numUsers = np.size(userPos, 0)
     allocVec = {}
-    reword = {}
+    reward = {}
     for contDrone in range(0, numDrones):
         allocVec[str(contDrone)] = np.zeros((numUsers,1))
     allocVec['total'] = np.zeros((numUsers, 1))
@@ -74,12 +74,12 @@ def alloc_users(userPos, dronePos, fc, dAngle, N0, BW, Pt, connectThresh):
         allocVec[str(contDrone)][SINR[:,contDrone] > connectThresh] = contDrone+1
         allocVec['total'][SINR[:, contDrone] > connectThresh] = contDrone + 1
     for dict in allocVec:
-        reword[dict] = 0
+        reward[dict] = 0
         for i in allocVec[dict]:
             if i > 0:
-                reword[dict] += 1
+                reward[dict] += 1
 
-    return allocVec, SINR, reword
+    return allocVec, SINR, reward
 
 class Q_Learning:
     def __init__(self, args):
@@ -88,12 +88,11 @@ class Q_Learning:
 
     def build_Q_table(self):
         state_space = []
-        for i in range(1, int(self.args.length/self.args.resolution+1)):
-            for j in range(1, int(self.args.width/self.args.resolution+1)):
-                #print(str((int(i*self.args.resolution-self.args.resolution/2),int(j*self.args.resolution-self.args.resolution/2))))
+        for i in range(1, int(self.args.length/self.args.resolution+2)):
+            for j in range(1, int(self.args.width/self.args.resolution+2)):
                 state_space += [str((int(i*self.args.resolution-self.args.resolution/2),int(j*self.args.resolution-self.args.resolution/2)))]
         Q_table = pd.DataFrame(
-            np.zeros((int(self.args.length/self.args.resolution)*int(self.args.width/self.args.resolution),len(self.args.action_space))),
+            np.zeros((int(self.args.length/self.args.resolution+1)*int(self.args.width/self.args.resolution+1),len(self.args.action_space))),
             columns = self.args.action_space,
             index = state_space,
         )
@@ -101,7 +100,6 @@ class Q_Learning:
 
     def check_state_exist(self, state, Q_table):
         if str(tuple(map(int,state))) not in Q_table.index:
-            print('new state added')
             # append new state to q table
             Q_table = Q_table.append(
                 pd.Series(
@@ -123,8 +121,8 @@ class Q_Learning:
         else:
             # choose random action
             action = np.random.choice(self.args.action_space)
-        reword = Q_table.loc[str(tuple(map(int,state))), action]
-        return reword, action, Q_table
+        reward = Q_table.loc[str(tuple(map(int,state))), action]
+        return reward, action, Q_table
 
     def choose_max_action(self, state, Q_table):
         Q_table = self.check_state_exist(state, Q_table)
@@ -133,8 +131,8 @@ class Q_Learning:
         state_action = Q_table.loc[str(tuple(map(int,state))), :]
         # some actions may have the same value, randomly choose on in these actions
         action = np.random.choice(state_action[state_action == np.max(state_action)].index)
-        reword = Q_table.loc[str(tuple(map(int,state))), action]
-        return reword, action, Q_table
+        reward = Q_table.loc[str(tuple(map(int,state))), action]
+        return reward, action, Q_table
 
     def take_action(self, state, action):
         for case in switch(action):
@@ -162,8 +160,8 @@ class Q_Learning:
                 # No need to break here, it'll stop anyway
         return state
 
-    def update_Q_table(self, Q_table, initial_state,initial_action, initial_table_reword, second_state, second_table_reword, second_real_reword):
-        Q_table.loc[str(tuple(map(int,initial_state))), initial_action] =  initial_table_reword+self.args.ALPHA*(second_real_reword + self.args.LAMBDA*second_table_reword - initial_table_reword)
+    def update_Q_table(self, Q_table, initial_state,initial_action, initial_table_reward, second_state, second_table_reward, second_real_reward):
+        Q_table.loc[str(tuple(map(int,initial_state))), initial_action] =  initial_table_reward+self.args.ALPHA*(second_real_reward + self.args.LAMBDA*second_table_reward - initial_table_reward)
         return Q_table
 
 

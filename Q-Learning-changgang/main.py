@@ -5,7 +5,6 @@ import pymongo
 import argparse
 import random
 import models
-import environment
 from models import Q_Learning
 import pandas as pd
 from pymongo import MongoClient
@@ -23,11 +22,11 @@ parser.add_argument('--numUsers', default=1050, type=int, help='The number of Us
 parser.add_argument('--length', default=100, type=int, help='The length of the area(meter)')
 parser.add_argument('--width', default=100, type=int, help='The width of the area(meter)')
 parser.add_argument('--resolution', default=10, type=int, help='The Resolution (meter)')
-parser.add_argument('--episode', default=10000, type=int, help='The number turns it plays')
+parser.add_argument('--episode', default=100, type=int, help='The number turns it plays')
 parser.add_argument('--step', default=20000, type=int, help='The number of steps for any turn of runs')
 parser.add_argument('--action_space', default=['east','west','south','north','stay'], type=list, help='The avaliable states')
 parser.add_argument('--EPSILON', default=0.9, type=float, help='The greedy policy')
-parser.add_argument('--ALPHA', default=0.1, type=float, help='The learning rate')
+parser.add_argument('--ALPHA', default=0.3, type=float, help='The learning rate')
 parser.add_argument('--LAMBDA', default=0.9, type=float, help='The discount factor')
 
 parser.add_argument('--connectThresh', default=40, type=int, help='Threshold')
@@ -43,9 +42,6 @@ parser.add_argument('--collection_name', default='Q_table_collection', type=str,
 parser.add_argument('--host', default='localhost', type=str, help='The host type')
 parser.add_argument('--mongodb_port', default=27017, type=int, help='The port of database')
 
-parser.add_argument('--cluster1', default=[0,0], type=list, help='The cluster1')
-parser.add_argument('--cluster2', default=[0,0], type=list, help='The cluster2')
-parser.add_argument('--cluster3', default=[0,0], type=list, help='The cluster3')
 
 args = parser.parse_args()
 Q = Q_Learning(args)
@@ -61,6 +57,7 @@ def generate_dict_from_array(array, name):
         data += ' )'
         dict [name + ' ' + str(i)] = data
     return copy.deepcopy(dict)
+
 
 
 
@@ -97,11 +94,7 @@ def environment_setup():
     label = {}
     # font = {'family': 'Palatino',}
     font = {}
-    args.cluster1 = [np.random.randint(20, 80), np.random.randint(20, 80)]
-    args.cluster2 = [np.random.randint(30, 80), np.random.randint(20, 70)]
-    args.cluster3 = [np.random.randint(10, 85), np.random.randint(10, 90)]
-
-    u['cluster1'] = args.cluster1
+    u['cluster1'] = [np.random.randint(20, 80), np.random.randint(20, 80)]
     SIGMA['cluster1'] = 7
     number['cluster1'] = 250
     colour['cluster1'] = '#9400D3'
@@ -112,7 +105,7 @@ def environment_setup():
         (np.random.randn(number['cluster1'], 1) * SIGMA['cluster1'] + u['cluster1'][1]) % length)
     label['cluster1'] = 'MS cluster 1'
 
-    u['cluster2'] = args.cluster2
+    u['cluster2'] = [np.random.randint(30, 80), np.random.randint(20, 70)]
     SIGMA['cluster2'] = 10
     number['cluster2'] = 300
     colour['cluster2'] = '#FF8C00'
@@ -123,7 +116,7 @@ def environment_setup():
         (np.random.randn(number['cluster2'], 1) * SIGMA['cluster2'] + u['cluster2'][1]) % length)
     label['cluster2'] = 'MS cluster 2'
 
-    u['cluster3'] = args.cluster3
+    u['cluster3'] = [np.random.randint(10, 85), np.random.randint(10, 90)]
     SIGMA['cluster3'] = 6
     number['cluster3'] = 200
     colour['cluster3'] = '#228B22'
@@ -149,7 +142,6 @@ def environment_setup():
     for i in range(args.numDrones):
         Q_table[i] = Q.build_Q_table()
     return dronePos, userPos, Q_table
-
 
 
 def save_initial_settling(U_p, D_p, name = args.database_name, collection_name ='initial_setting', host='localhost', port=27017):
@@ -178,6 +170,7 @@ def save_initial_settling(U_p, D_p, name = args.database_name, collection_name =
     initial_info ['discount_factor'] = args.LAMBDA
     initial_info ['episodes'] = 'total if possible'
     result = collection.insert(initial_info)
+
 
 def save_Q_table(table, SINR, initial_real_reword, action, dronePos, episode, step, drone, name , collection_name, host='localhost', port=27017):
     myclient = pymongo.MongoClient(host='localhost', port=27017)
@@ -224,15 +217,11 @@ def main(args):
 
     count = []
     for i in range(args.episode):
-        if i < 20:
-            dronePos = np.array([[5, 5, 30], [95, 95, 30]])
+        dronePos = np.array([[5, 5, 30], [95, 95, 30]])
         total = 0
         counter = 0
         reword_table = np.zeros((args.numDrones, args.step))
         for j in range(args.step):
-            #print(dronePos)
-            if i == 20:
-                userPos = environment.dynamic(userPos, i, j, args)
             initial_state = dronePos
             initial_table_reword = 0
             second_real_reword = 0
@@ -245,17 +234,17 @@ def main(args):
                 second_state = dronePos
                 second_table_reword , action, Q_table[k] = Q.choose_max_action(dronePos[k][:2], Q_table[k])
                 allocVec, SINR, second_real_reword = models.alloc_users(userPos,dronePos,args.fc,args.dAngle,args.N0,args.BW,args.Pt,args.connectThresh)
-                dronePos = second_state
+                dronePos = second_state%args.length
                 Q_table[k] = Q.update_Q_table(Q_table[k], initial_state[k][:2], initial_action, initial_table_reword, second_state[k][:2], second_table_reword, second_real_reword['total'])
                 rewords = initial_real_reword['total']
-                save_Q_table(Q_table, SINR, initial_real_reword, action, dronePos, i,j, k, args.database_name, args.collection_name)
+                save_Q_table(Q_table, SINR, initial_real_reword, action, dronePos, str(i),str(j), str(k), args.database_name, args.collection_name)
             counter += 1
             total += initial_real_reword['total']
             if j%200 ==0:
-                print('eisode', i,' with average reward:', total/counter)
+                print('eisode', i,' with average reword:', total/counter)
             reword_table[k,j] = rewords
         count += [total/counter]
-        #np.save('./Log/reword_episod_' + str(i)+ '.npy', count)
+        np.save('Log/reword_episod_' + str(i)+ '.npy', count)
         print (count)
         print(Q_table)
         print(dronePos)

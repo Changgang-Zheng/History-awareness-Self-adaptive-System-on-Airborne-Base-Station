@@ -22,8 +22,8 @@ parser.add_argument('--numUsers', default=1050, type=int, help='The number of Us
 parser.add_argument('--length', default=100, type=int, help='The length of the area(meter)')
 parser.add_argument('--width', default=100, type=int, help='The width of the area(meter)')
 parser.add_argument('--resolution', default=10, type=int, help='The Resolution (meter)')
-parser.add_argument('--episode', default=100, type=int, help='The number turns it plays')
-parser.add_argument('--step', default=20000, type=int, help='The number of steps for any turn of runs')
+parser.add_argument('--episode', default=10, type=int, help='The number turns it plays')
+parser.add_argument('--step', default=200, type=int, help='The number of steps for any turn of runs')
 parser.add_argument('--action_space', default=['east','west','south','north','stay'], type=list, help='The avaliable states')
 parser.add_argument('--EPSILON', default=0.9, type=float, help='The greedy policy')
 parser.add_argument('--ALPHA', default=0.3, type=float, help='The learning rate')
@@ -235,14 +235,14 @@ def main(args):
                 dronePos = second_state%args.length
                 Q_table[k] = sarsa.update_Q_table(Q_table[k], initial_state[k][:2], initial_action, initial_table_reword, second_state[k][:2], second_table_reword, second_real_reword['total'])
                 rewords = initial_real_reword['total']
-                save_Q_table(Q_table, SINR, initial_real_reword, action, dronePos, str(i),str(j), str(k), args.database_name, args.collection_name)
+                save_Q_table(Q_table, SINR, initial_real_reword, action, dronePos, i,j,k, args.database_name, args.collection_name)
             counter += 1
             total += initial_real_reword['total']
             if j%200 ==0:
                 print('eisode', i,' with average reword:', total/counter)
             reword_table[k,j] = rewords
         count += [total/counter]
-        np.save('Log/reword_episod_' + str(i)+ '.npy', count)
+        #np.save('Log/reword_episod_' + str(i)+ '.npy', count)
         print (count)
         print(Q_table)
         print(dronePos)

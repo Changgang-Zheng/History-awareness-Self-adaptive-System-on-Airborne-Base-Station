@@ -14,6 +14,8 @@ from matplotlib.patches import Circle
 from datetime import datetime
 import pickle
 import copy
+import paho.mqtt.client as mqtt
+from paho.mqtt.subscribe import _on_connect
 
 parser = argparse.ArgumentParser(description='Reinforce Learning')
 parser.add_argument('--random_seed', default=19, type=int, help='The specific seed to generate the random numbers')
@@ -135,11 +137,60 @@ def environment_setup():
             userPos = np.concatenate((userPos, cluster[dict]), axis=0)
     userPos[:, 2] = 1.5
     save_initial_settling(userPos,dronePos)
+    save_initial_settings_mqtt(userPos,dronePos)
     Q_table = {}
     for i in range(args.numDrones):
         Q_table[i] = sarsa.build_Q_table()
     return dronePos, userPos, Q_table
 
+##MQTT
+def on_connect(client, userdata, flags, rc):
+    print('CONNACK received with code %d.' % (rc))
+    
+def save_initial_settings_mqtt(U_p, D_p, name = args.database_name, topic_name ='initial_setting.json', host='localhost', port=1883):
+    mqttClient=mqtt.Client()
+    mqttClient.on_connect = on_connect
+    mqttClient.connect(host, port)
+    initial_info = {}
+    initial_info ['random_seed'] = args.random_seed
+    initial_info ['num_drones'] = args.numDrones
+    initial_info ['num_users'] = args.numUsers
+    initial_info ['user_positions'] = generate_dict_from_array(U_p, 'user')
+    initial_info ['drone_positions'] = generate_dict_from_array(D_p, 'drone')
+    initial_info ['carrier_frequency'] = args.fc
+    initial_info ['transmit_power'] = args.Pt
+    initial_info ['sinr_threshold'] = args.connectThresh
+    initial_info ['drone_user_capacity'] = 'not consider yet'
+    initial_info ['x_min'] = 0
+    initial_info ['x_max'] = args.width
+    initial_info ['y_min'] = 0
+    initial_info ['y_max'] = args.length
+    initial_info ['possible_actions'] = [[1,0],[-1,0],[0,1],[0,-1],[0,0]]
+    initial_info ['learning_rate'] = args.ALPHA
+    initial_info ['total_episodes'] = args.episode
+    initial_info ['iterations_per_episode'] = args.step
+    initial_info ['discount_factor'] = args.LAMBDA
+    initial_info ['episodes'] = 'total if possible'
+    mqttClient.publish(topic_name, str(initial_info))
+
+def save_Q_table_mqtt(table, SINR, initial_real_reword, action, dronePos, episode, step, drone, topic_name = 'q_table.json', host='localhost', port=1883):
+    mqttClient=mqtt.Client()
+    mqttClient.on_connect = on_connect
+    mqttClient.connect(host, port)
+    data = {}
+    data['episode']=episode
+    data['step'] = step
+    data['drone number']=drone
+    drone_dict = data ['qtable'] = {}
+    for i in table[int(drone)].index:
+        drone_dict['position: ' + i] = {}
+        for j in table[int(drone)].columns:
+            drone_dict['position: ' + i][j] = table[int(drone)].loc[i, j]
+    drone_dict['SINR'] = generate_dict_from_array( SINR, 'user')
+    drone_dict['state'] = generate_dict_from_array(dronePos, 'drone')
+    drone_dict['action'] = action
+    drone_dict['reward'] = initial_real_reword
+    mqttClient.publish(topic_name, str(data))
 
 def save_initial_settling(U_p, D_p, name = args.database_name, collection_name ='initial_setting', host='localhost', port=27017):
     myclient = pymongo.MongoClient(host='localhost', port=27017)
@@ -167,7 +218,6 @@ def save_initial_settling(U_p, D_p, name = args.database_name, collection_name =
     initial_info ['discount_factor'] = args.LAMBDA
     initial_info ['episodes'] = 'total if possible'
     result = collection.insert(initial_info)
-
 
 def save_Q_table(table, SINR, initial_real_reward, action, dronePos, episode, step, drone, name , collection_name, host='localhost', port=27017):
     myclient = pymongo.MongoClient(host='localhost', port=27017)
@@ -236,6 +286,7 @@ def main(args):
                 Q_table[k] = sarsa.update_Q_table(Q_table[k], initial_state[k][:2], initial_action, initial_table_reword, second_state[k][:2], second_table_reword, second_real_reword['total'])
                 rewords = initial_real_reword['total']
                 save_Q_table(Q_table, SINR, initial_real_reword, action, dronePos, i,j,k, args.database_name, args.collection_name)
+                save_Q_table_mqtt(Q_table, SINR, initial_real_reword, action, dronePos, i,j, k)
             counter += 1
             total += initial_real_reword['total']
             if j%200 ==0:

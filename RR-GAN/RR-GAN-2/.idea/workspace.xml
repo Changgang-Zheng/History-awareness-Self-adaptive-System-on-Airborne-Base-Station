@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="64beb8c4-d131-449c-92c7-2beda1e6670f" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/dataloader.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/models.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/main.py" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProjectId" id="1WWcow7mI9Mddb6vzyYu9tzmyGa" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Final/Experiment/Multi-running/Q-Learning-changgang1 updated - one drone" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DQN-changgang1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="mian" type="PythonConfigurationType" factoryName="Python">
+      <module name="DQN-changgang1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\changgang\Anaconda3\envs\pytorch\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.mian" />
+      <item itemvalue="Python.main" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="64beb8c4-d131-449c-92c7-2beda1e6670f" name="Default Changelist" comment="" />
+      <created>1579268969959</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1579268969959</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="378" y="248" width="490" height="561" key="#xdebugger.evaluate" timestamp="1587726718973">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="378" y="248" width="490" height="577" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1587726718973" />
+    <state x="825" y="211" key="#xdebugger.evaluate/0.0.1920.1080@0.0.1920.1080" timestamp="1586858975713" />
+    <state x="740" y="279" key="FileChooserDialogImpl" timestamp="1587110876698">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1587110876698" />
+    <state width="1899" height="297" key="GridCell.Tab.0.bottom" timestamp="1595141619991">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="297" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1595141619991" />
+    <state width="1899" height="490" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1586859478240" />
+    <state width="1899" height="297" key="GridCell.Tab.0.center" timestamp="1595141619991">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="297" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1595141619991" />
+    <state width="1899" height="490" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1586859478240" />
+    <state width="1899" height="297" key="GridCell.Tab.0.left" timestamp="1595141619991">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="297" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1595141619991" />
+    <state width="1899" height="490" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1586859478239" />
+    <state width="1899" height="297" key="GridCell.Tab.0.right" timestamp="1595141619991">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="297" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1595141619991" />
+    <state width="1899" height="490" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586859478240" />
+    <state width="1899" height="297" key="GridCell.Tab.1.bottom" timestamp="1595141619992">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="297" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1595141619992" />
+    <state width="1899" height="490" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1586859480753" />
+    <state width="1899" height="297" key="GridCell.Tab.1.center" timestamp="1595141619992">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="297" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1595141619992" />
+    <state width="1899" height="490" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1586859480752" />
+    <state width="1899" height="297" key="GridCell.Tab.1.left" timestamp="1595141619991">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="297" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1595141619991" />
+    <state width="1899" height="490" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1586859480752" />
+    <state width="1899" height="297" key="GridCell.Tab.1.right" timestamp="1595141619992">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="297" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1595141619992" />
+    <state width="1899" height="490" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586859480752" />
+    <state x="392" y="155" key="SettingsEditor" timestamp="1586859778966">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="392" y="155" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586859778966" />
+    <state width="960" height="520" key="XDebugger.FullValuePopup" timestamp="1587724350111">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="960" height="520" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1587724350111" />
+    <state width="960" height="540" key="XDebugger.FullValuePopup/0.0.1920.1080@0.0.1920.1080" timestamp="1586767799269" />
+    <state x="630" y="363" key="com.intellij.ide.util.TipDialog" timestamp="1586592556322">
+      <screen x="0" y="23" width="1920" height="1012" />
+    </state>
+    <state x="630" y="363" key="com.intellij.ide.util.TipDialog/0.23.1920.1012@0.23.1920.1012" timestamp="1586592556322" />
+    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1586858533500">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1586858533500" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pix2pix_models.py</url>
+          <line>60</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>339</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

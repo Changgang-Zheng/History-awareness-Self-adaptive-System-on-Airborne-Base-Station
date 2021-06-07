@@ -11,7 +11,7 @@ import pymongo
 import argparse
 import random
 import models
-from pix2pix_models import UNet, Discriminator
+from net_models import UNet, Discriminator
 import os
 from models import SARSA
 from models import Deep_Q_Network, net
